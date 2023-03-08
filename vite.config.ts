@@ -59,8 +59,13 @@ export default defineConfig({
         ],
         shortcuts: [
           {
-            name: "stupid shortcut",
-            url: "http://192.168.230.13:3005/",
+            name: "Page 1",
+            url: "/1",
+            icons: [{ src: "/vite.svg", sizes: "144x144" }],
+          },
+          {
+            name: "page 2",
+            url: "/2",
             icons: [{ src: "/vite.svg", sizes: "144x144" }],
           },
         ],
