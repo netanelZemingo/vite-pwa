@@ -3,6 +3,7 @@ import NavBar from "./Components/NavBar";
 import Page1 from "./pages/Page1";
 import Page2 from "./pages/Page2";
 import "./App.css";
+import ReloadPrompt from "./Components/ReloadPrompt";
 const App = () => {
   return (
     <>
@@ -14,6 +15,7 @@ const App = () => {
             <Route path="/2" element={<Page2 />} />
           </Routes>
           <div className="nav">
+          <ReloadPrompt/>
             <NavBar />
           </div>
         </div>

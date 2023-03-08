@@ -67,10 +67,13 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-92266e6b'], (function (workbox) { 'use strict';
+define(['./workbox-0f62b323'], (function (workbox) { 'use strict';
 
-  self.skipWaiting();
-  workbox.clientsClaim();
+  self.addEventListener('message', event => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+      self.skipWaiting();
+    }
+  });
 
   /**
    * The precacheAndRoute() method efficiently caches and responds to
@@ -91,12 +94,15 @@ define(['./workbox-92266e6b'], (function (workbox) { 'use strict';
   workbox.registerRoute(({
     url
   }) => {
-    console.log(url, "wtftfttf");
     return url.origin.includes("http://localhost:5173");
   }, new workbox.CacheFirst(), 'GET');
   workbox.registerRoute(({
     url
-  }) => url.href === "https://jsonplaceholder.typicode.com/todos/2", new workbox.CacheOnly(), 'GET');
+  }) => url.href === "https://jsonplaceholder.typicode.com/todos/2", new workbox.CacheFirst({
+    plugins: [new workbox.CacheableResponsePlugin({
+      statuses: [0, 200]
+    })]
+  }), 'GET');
   workbox.registerRoute(({
     url
   }) => url.href === "https://jsonplaceholder.typicode.com/todos/1", new workbox.NetworkOnly({
