@@ -4,7 +4,10 @@ import Page1 from "./pages/Page1";
 import Page2 from "./pages/Page2";
 import "./App.css";
 import ReloadPrompt from "./Components/ReloadPrompt";
+import { registerSW } from "virtual:pwa-register";
+
 const App = () => {
+  registerSW({ immediate: true });
   return (
     <>
       <BrowserRouter>
@@ -15,7 +18,7 @@ const App = () => {
             <Route path="/2" element={<Page2 />} />
           </Routes>
           <div className="nav">
-          <ReloadPrompt/>
+            <ReloadPrompt />
             <NavBar />
           </div>
         </div>
