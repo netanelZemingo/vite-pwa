@@ -13,11 +13,11 @@ function ReloadPrompt() {
       // eslint-disable-next-line prefer-template
       console.log("SW Registered: " + r);
       console.log(r);
-      
     },
     onRegisterError(error) {
       console.log("SW registration error", error);
     },
+    immediate: true,
   });
 
   const close = () => {
