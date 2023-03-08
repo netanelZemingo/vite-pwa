@@ -17,7 +17,7 @@ const Page1 = () => {
 
   return (
     <div>
-      Page1 Network only supposed to update alone but it will ?
+      Page1 Network only
       {JSON.stringify(first)}
     </div>
   );
