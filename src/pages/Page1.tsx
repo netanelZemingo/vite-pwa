@@ -17,7 +17,7 @@ const Page1 = () => {
 
   return (
     <div>
-      Page1 Netork only
+      Page1 Netork only changge change
       {JSON.stringify(first)}
     </div>
   );
