@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import CustomNotifications from "../Components/CustomNotifications";
 
 const Page1 = () => {
   const [first, setfirst] = useState();
@@ -17,6 +18,7 @@ const Page1 = () => {
 
   return (
     <div>
+      <CustomNotifications/>
       Page1 Network only zzzz
       {JSON.stringify(first)}
     </div>
