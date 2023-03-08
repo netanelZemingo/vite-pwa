@@ -17,7 +17,7 @@ const Page1 = () => {
 
   return (
     <div>
-      Page1 Network only
+      Page1 Network only this change will create a refresh ?
       {JSON.stringify(first)}
     </div>
   );
