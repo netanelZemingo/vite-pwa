@@ -8,14 +8,13 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "prompt",
-      
+      registerType: "autoUpdate",
+
       devOptions: {
         enabled: true,
         /* other options */
       },
       workbox: {
-        
         runtimeCaching: [
           {
             handler: "CacheFirst",
