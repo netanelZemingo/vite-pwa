@@ -17,7 +17,7 @@ const Page1 = () => {
 
   return (
     <div>
-      Page1 Netork only changge change 231443312432
+      Page1 Network only
       {JSON.stringify(first)}
     </div>
   );
