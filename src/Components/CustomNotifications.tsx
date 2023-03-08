@@ -5,23 +5,14 @@ const CustomNotifications = () => {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
         console.log("wtf");
+        new Notification("Titlei", {
+          body: "Notification body text",
+        });
       }
     });
   }, []);
-  const interval = setInterval(() => {
-    console.log("interval");
 
-    new Notification("Titlei", {
-      body: "Notification body text",
-    });
-  }, 2000);
-
-  return (
-    <div>
-      CustomNotifications
-      <button onClick={() => clearInterval(interval)}>clearInterval</button>
-    </div>
-  );
+  return <div>CustomNotifications</div>;
 };
 
 export default CustomNotifications;
