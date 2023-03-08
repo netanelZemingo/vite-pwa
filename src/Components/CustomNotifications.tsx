@@ -9,6 +9,8 @@ const CustomNotifications = () => {
     });
   }, []);
   const interval = setInterval(() => {
+    console.log("interval");
+
     new Notification("Titlei", {
       body: "Notification body text",
     });
