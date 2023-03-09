@@ -1,28 +1,25 @@
 import React, { useEffect } from "react";
 
 const CustomNotifications = () => {
-  const showNotifications = () => {
-    Notification.requestPermission().then((permission) => {
-      if (permission === "granted") {
-        console.log("wtf");
-        new Notification("Titlei", {
-          body: "Notification body text",
-          silent: false,
-        });
-      }
-    });
-  };
-  const showNotificationsAndroid = () => {
-    navigator.serviceWorker.ready.then(function (registration) {
-      registration.showNotification("Notification with ServiceWorker");
-    });
+  const showNotification = () => {
+    if ("serviceWorker" in navigator)
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          navigator.serviceWorker.ready.then(function (registration) {
+            registration.showNotification("Notification with ServiceWorker");
+          });
+        }
+      });
   };
 
   return (
     <div>
-      CustomNotifications
-      <button onClick={showNotifications}>showNotifications</button>
-      <button onClick={showNotificationsAndroid}>showNotificationsAndroid</button>
+      <p>CustomNotifications</p>
+      {"serviceWorker" in navigator ? (
+        <button onClick={showNotification}>showNotification</button>
+      ) : (
+        <p>your browser wont support it</p>
+      )}
     </div>
   );
 };
