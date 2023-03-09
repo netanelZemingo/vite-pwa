@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 const CustomNotifications = () => {
-  useEffect(() => {
+  const showNotifications = () => {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
         console.log("wtf");
@@ -10,9 +10,14 @@ const CustomNotifications = () => {
         });
       }
     });
-  }, []);
+  };
 
-  return <div>CustomNotifications</div>;
+  return (
+    <div>
+      CustomNotifications
+      <button onClick={showNotifications}>showNotifications</button>
+    </div>
+  );
 };
 
 export default CustomNotifications;
