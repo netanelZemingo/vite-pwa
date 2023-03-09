@@ -12,11 +12,17 @@ const CustomNotifications = () => {
       }
     });
   };
+  const showNotificationsAndroid = () => {
+    navigator.serviceWorker.ready.then(function (registration) {
+      registration.showNotification("Notification with ServiceWorker");
+    });
+  };
 
   return (
     <div>
       CustomNotifications
       <button onClick={showNotifications}>showNotifications</button>
+      <button onClick={showNotificationsAndroid}>showNotificationsAndroid</button>
     </div>
   );
 };
