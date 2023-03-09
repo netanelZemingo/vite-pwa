@@ -4,7 +4,7 @@ import { BeforeInstallPromptEvent } from "../types/BeforeInstallPromptEvent";
 const InstallPwaBtn = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const deferedFunction = (e: BeforeInstallPromptEvent) => {
-    e.preventDefault();
+    // e.preventDefault();
     setDeferredPrompt(e);
   };
   addEventListener("beforeinstallprompt", deferedFunction);
