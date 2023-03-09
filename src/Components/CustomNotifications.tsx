@@ -7,6 +7,7 @@ const CustomNotifications = () => {
         console.log("wtf");
         new Notification("Titlei", {
           body: "Notification body text",
+          silent: false,
         });
       }
     });
