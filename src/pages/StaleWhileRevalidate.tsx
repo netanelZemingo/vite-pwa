@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import CustomNotifications from "../Components/CustomNotifications";
+import { useEffect, useState } from "react";
+import { styled } from "styled-components";
+import { DataPageContainer, DummyDataText, Expalining } from "./Styles";
 
 export default function StaleWhileRevalidate() {
   const [dummyData, setDummyData] = useState();
@@ -17,11 +18,16 @@ export default function StaleWhileRevalidate() {
   }, [setDummyData]);
 
   return (
-    <div>
-      StaleWhileRevalidate, Resources are requested from both the cache and the network in parallel.
-      The strategy will respond with the cached version if available, otherwise wait for the network
-      response. The cache is updated with the network response with each successful request.
-      {JSON.stringify(dummyData)}
-    </div>
+    <DataPageContainer>
+      <Expalining>
+        <p>
+          StaleWhileRevalidate, Resources are requested from both the cache and the network in
+          parallel. The strategy will respond with the cached version if available, otherwise wait
+          for the network response. The cache is updated with the network response with each
+          successful request.
+        </p>
+      </Expalining>
+      <DummyDataText>{JSON.stringify(dummyData)}</DummyDataText>
+    </DataPageContainer>
   );
 }

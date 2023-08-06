@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "host": "vite --host",
     "serve": "npm run build && node server/server.js",
-    "show-pwa": "npm run build && npm run preview"
+    "show-pwa": "npm run build && npm run preview --host",
+    "ngroking":"ngrok http 4173"
+
   },
   "dependencies": {
     "react": "^18.2.0",

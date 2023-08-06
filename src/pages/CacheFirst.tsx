@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { DataPageContainer, DummyDataText, Expalining } from "./Styles";
 
 export const CacheFirst = () => {
   const [dummyData, setDummyData] = useState();
@@ -16,9 +17,9 @@ export const CacheFirst = () => {
   }, [setDummyData]);
 
   return (
-    <div>
-      Page2 Cache first
-      {JSON.stringify(dummyData)}
-    </div>
+    <DataPageContainer>
+      <Expalining>Cache first Strategy</Expalining>
+      <DummyDataText>{JSON.stringify(dummyData)}</DummyDataText>
+    </DataPageContainer>
   );
 };

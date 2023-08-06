@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import CustomNotifications from "../Components/CustomNotifications";
+import { useEffect, useState } from "react";
+import { styled } from "styled-components";
+import { DataPageContainer, Expalining, DummyDataText } from "./Styles";
 
 export const NetworkOnly = () => {
   const [dummyData, setDummyData] = useState();
@@ -17,9 +18,11 @@ export const NetworkOnly = () => {
   }, [setDummyData]);
 
   return (
-    <div>
-      Page1 Network only zzzz
-      {JSON.stringify(dummyData)}
-    </div>
+    <DataPageContainer>
+      <Expalining>
+        Network only Strategy, if offline will not show the data that got from the server
+      </Expalining>
+      <DummyDataText>{JSON.stringify(dummyData)}</DummyDataText>
+    </DataPageContainer>
   );
 };
