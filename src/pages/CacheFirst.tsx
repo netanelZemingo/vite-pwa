@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const Page2 = () => {
-  const [first, setfirst] = useState();
+export const CacheFirst = () => {
+  const [dummyData, setDummyData] = useState();
 
   const get = async () => {
     const res = await fetch("https://jsonplaceholder.typicode.com/todos/2");
@@ -11,16 +11,14 @@ const Page2 = () => {
   useEffect(() => {
     (async () => {
       const d = await get();
-      setfirst(d);
+      setDummyData(d);
     })();
-  }, [setfirst]);
+  }, [setDummyData]);
 
   return (
     <div>
       Page2 Cache first
-      {JSON.stringify(first)}
+      {JSON.stringify(dummyData)}
     </div>
   );
 };
-
-export default Page2;

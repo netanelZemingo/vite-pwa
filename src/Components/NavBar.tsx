@@ -8,8 +8,9 @@ const NavBar = () => {
     <div>
       <InstallPwaBtn />
       <Share />
-      <Link to={"/1"}> page 1</Link>
-      <Link to={"/2"}> page 2</Link>
+      <Link to={"/1"}> Network Only </Link>
+      <Link to={"/2"}> Cache First</Link>
+      <Link to={"/3"}> StaleWhileRevalidate</Link>
     </div>
   );
 };

@@ -9,20 +9,25 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "prompt",
-      
+
       devOptions: {
         enabled: true,
         /* other options */
       },
       workbox: {
-        
         runtimeCaching: [
+          // {
+          //   handler: "CacheFirst",
+          //   urlPattern: ({ url }) => {
+          //     return url.origin.includes("http://localhost:5173");
+          //   },
+          //   // options: { cacheableResponse: { statuses: [0, 200] } },
+          // },
           {
-            handler: "CacheFirst",
-            urlPattern: ({ url }) => {
-              return url.origin.includes("http://localhost:5173");
-            },
-            // options: { cacheableResponse: { statuses: [0, 200] } },
+            // chaching all the ok 0,200 http codes from all urls
+            handler: "NetworkOnly",
+            urlPattern: ({ url }) => url.href === "https://jsonplaceholder.typicode.com/todos/1",
+            options: { cacheableResponse: { statuses: [0, 200] } },
           },
           {
             handler: "CacheFirst",
@@ -31,9 +36,9 @@ export default defineConfig({
           },
           {
             // chaching all the ok 0,200 http codes from all urls
-            handler: "NetworkOnly",
-            urlPattern: ({ url }) => url.href === "https://jsonplaceholder.typicode.com/todos/1",
-            options: { cacheableResponse: { statuses: [0, 200] } },
+            handler: "StaleWhileRevalidate",
+            urlPattern: ({ url }) => url.href === "https://jsonplaceholder.typicode.com/todos/3",
+            // options: { cacheableResponse: { statuses: [0, 200] } },
           },
         ],
       },
