@@ -7,18 +7,25 @@ import NavBar from "./NavBar";
 import ReloadPrompt from "./ReloadPrompt";
 import { HomePage } from "../pages/HomePage";
 import { styled } from "styled-components";
+import { Chat } from "../pages/Chat";
+import { CachedAssets } from "../pages/CachedAssets";
+
+const RoutesContainer = styled.div`
+  height: 90%;
+`;
+
+const NavBarContainer = styled.div`
+  height: 10%;
+`;
 
 export enum MyRoutes {
   networkOnly = "networkOnly",
   cacheFirst = "cacheFirst",
   staleWhileRevalidate = "staleWhileRevalidate",
+  chat = "chat",
+  cachedAssets = "cachedAssets",
 }
-const RoutesContainer = styled.div`
-  height: 95%;
-`;
-const NavBarContainer = styled.div`
-  height: 5%;
-`;
+
 export default function MyRouter() {
   return (
     <BrowserRouter>
@@ -28,6 +35,8 @@ export default function MyRouter() {
           <Route path={MyRoutes.networkOnly} element={<NetworkOnly />} />
           <Route path={MyRoutes.cacheFirst} element={<CacheFirst />} />
           <Route path={MyRoutes.staleWhileRevalidate} element={<StaleWhileRevalidate />} />
+          <Route path={MyRoutes.chat} element={<Chat />} />
+          <Route path={MyRoutes.cachedAssets} element={<CachedAssets />} />
         </Routes>
       </RoutesContainer>
 

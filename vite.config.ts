@@ -10,11 +10,13 @@ export default defineConfig({
     VitePWA({
       registerType: "prompt",
 
+      // injectManifest: { swSrc: "./public/custom-service-worker.ts" },
       devOptions: {
         enabled: true,
-        /* other options */
       },
+
       workbox: {
+        importScripts: ["./custom-service-worker.js"],
         runtimeCaching: [
           // {
           //   handler: "CacheFirst",
@@ -40,8 +42,25 @@ export default defineConfig({
             urlPattern: ({ url }) => url.href === "https://jsonplaceholder.typicode.com/todos/3",
             // options: { cacheableResponse: { statuses: [0, 200] } },
           },
+          {
+            handler: "StaleWhileRevalidate",
+            method: "GET",
+            urlPattern: ({ url }) => {
+              console.log(url.pathname);
+
+              return url.pathname === "/chat";
+            },
+          },
+          {
+            handler: "CacheFirst",
+            method: "GET",
+            urlPattern: ({ url }) => {
+              return url.href.includes("https://robohash.org/");
+            },
+          },
         ],
       },
+
       manifest: {
         share_target: { action: "share", params: {} },
         name: "vite pwa tries",
@@ -51,6 +70,12 @@ export default defineConfig({
         theme_color: "#000000",
 
         icons: [
+          {
+            src: "/textPic.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+
           {
             src: "/vite.svg",
             sizes: "512x512",
@@ -66,17 +91,23 @@ export default defineConfig({
         ],
         shortcuts: [
           {
-            name: "Page 1",
-            url: "/1",
+            name: "Network Only",
+            url: `/networkOnly`,
             icons: [{ src: "/vite.svg", sizes: "144x144" }],
           },
           {
-            name: "page 2",
-            url: "/2",
+            name: "Cache First",
+            url: "/cacheFirst",
+            icons: [{ src: "/vite.svg", sizes: "144x144" }],
+          },
+          {
+            name: "staleWhileRevalidate",
+            url: "/staleWhileRevalidate",
             icons: [{ src: "/vite.svg", sizes: "144x144" }],
           },
         ],
       },
     }),
   ],
+  // server: { fs: { allow: ["/"] } },
 });

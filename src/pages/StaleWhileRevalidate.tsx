@@ -20,12 +20,10 @@ export default function StaleWhileRevalidate() {
   return (
     <DataPageContainer>
       <Expalining>
-        <p>
-          StaleWhileRevalidate, Resources are requested from both the cache and the network in
-          parallel. The strategy will respond with the cached version if available, otherwise wait
-          for the network response. The cache is updated with the network response with each
-          successful request.
-        </p>
+        StaleWhileRevalidate, Resources are requested from both the cache and the network in
+        parallel. The strategy will respond with the cached version if available, otherwise wait for
+        the network response. The cache is updated with the network response with each successful
+        request.
       </Expalining>
       <DummyDataText>{JSON.stringify(dummyData)}</DummyDataText>
     </DataPageContainer>

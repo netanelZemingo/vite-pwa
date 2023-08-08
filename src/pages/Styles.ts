@@ -18,3 +18,73 @@ export const DummyDataText = styled.p`
   border-radius: 20px;
   padding: 5px;
 `;
+// background: ${(props) => (props.$isMine ? "#4CAF50" : "#E0E0E0")};
+//   color: ${(props) => (props.$isMine ? "white" : "#BF4F74")};
+export const Input = styled.input`
+  border: none;
+  border-bottom: 2px solid lightblue;
+  min-height: 2rem;
+  min-width: 15rem;
+  outline: none;
+  border-radius: 10px;
+  padding: 0.5rem;
+  &:focus {
+    border: 2px solid lightblue;
+  }
+  background-color: #e0e0e0;
+  color: #bf4f74;
+  font-size: large;
+`;
+
+export const Hint = styled.p`
+  color: gray;
+  font-weight: bold;
+`;
+
+export const Button = styled.button`
+  border-radius: 10px;
+  border: none;
+  background: #4caf50;
+
+  color: white;
+  padding: 1rem;
+  font-size: large;
+  font-weight: bolder;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    background: gray;
+  }
+
+  //
+  /* Apply scale animation on hover */
+  &:enabled:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:enabled {
+    animation: slideAnimation 2s ease-in-out alternate;
+  }
+
+  @keyframes slideAnimation {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+`;
+
+export const SpecialText = styled.span`
+  color: pink;
+  text-transform: capitalize;
+  text-shadow: 1px 1px 10px pink;
+  font-weight: bold;
+`;

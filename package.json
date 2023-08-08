@@ -10,13 +10,14 @@
     "host": "vite --host",
     "serve": "npm run build && node server/server.js",
     "show-pwa": "npm run build && npm run preview --host",
-    "ngroking":"ngrok http 4173"
-
+    "ngroking": "ngrok http 4173"
   },
   "dependencies": {
+    "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
+    "socket.io-client": "^4.7.2",
     "styled-components": "^6.0.7"
   },
   "devDependencies": {
