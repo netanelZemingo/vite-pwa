@@ -11,11 +11,17 @@ import { Chat } from "../pages/Chat";
 import { CachedAssets } from "../pages/CachedAssets";
 
 const RoutesContainer = styled.div`
-  height: 90%;
+  height: 100%;
+  width: 100%;
 `;
 
 const NavBarContainer = styled.div`
-  height: 10%;
+  position: absolute;
+  left: 0.3rem;
+  top: 0.3rem;
+`;
+const RouterContainer = styled.div`
+  /* display: flex; */
 `;
 
 export enum MyRoutes {

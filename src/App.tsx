@@ -4,7 +4,7 @@ import NavBar from "./Components/NavBar";
 import ReloadPrompt from "./Components/ReloadPrompt";
 import { MyGlobalContext } from "./context/UserContext";
 import { User } from "./types/DataSets";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ServerService } from "./services/Server";
 
 const AppContainer = styled.div`
@@ -12,16 +12,29 @@ const AppContainer = styled.div`
   width: 100%;
 `;
 const App = () => {
-  const initUser = () => {
-    const userFromStorage = localStorage.getItem("user");
-    if (userFromStorage) {
-      const user = JSON.parse(userFromStorage);
-      ServerService.user = user;
-      return user;
+  const initUser = async () => {
+    const userStringify = localStorage.getItem("user");
+    if (userStringify) {
+      const user = JSON.parse(userStringify);
+      const res = await ServerService.validateUser(user);
+      console.log(res);
+      if (res.data.isUser) {
+        ServerService.user = user;
+        return user;
+      }
+      localStorage.removeItem("user");
+      return null;
     }
     return null;
   };
-  const [user, _setUser] = useState<User | null>(initUser());
+
+  useEffect(() => {
+    (async () => {
+      _setUser(await initUser());
+    })();
+  }, []);
+
+  const [user, _setUser] = useState<User | null>(null);
   const setUser = useCallback((user: User | null) => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));

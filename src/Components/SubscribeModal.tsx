@@ -5,15 +5,19 @@ import { urlBase64ToUint8Array } from "../utils/urlBase64ToUint8Array";
 import { ServerService } from "../services/Server";
 import { useGlobalContext } from "../context/UserContext";
 import { useRegisterSW } from "virtual:pwa-register/react";
+import { User } from "../types/DataSets";
 // import.meta.env.VITE_VAPID_PUBLIC; // accessing the web push key
 const Modal = styled.div`
   position: absolute;
   transform: translate(50%, -50%);
+  background-color: rgba(255, 255, 254, 0.9);
+  box-shadow: 3px 4px 51px 0px #888;;
+
   right: 50%;
   top: 50%;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 80%;
   height: 50%;
   border: 1px solid black;
   border-radius: 20px;
@@ -34,12 +38,18 @@ const Backdrop = styled.div`
   width: 100%;
 `;
 export const SubscribeModal = () => {
-  const { setUser } = useGlobalContext();
+  const { setUser, user } = useGlobalContext();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const [subscription, setSubscription] = useState<any>(null);
+
   const [registration, setRegistration] = useState<ServiceWorkerRegistration | null>(null);
+
+  useEffect(() => {
+    if (!user) {
+      sendDataToSw(null);
+    }
+    return () => {};
+  }, [registration]);
 
   useRegisterSW({
     onRegisteredSW(r, reg) {
@@ -49,27 +59,23 @@ export const SubscribeModal = () => {
         console.error("CUSTOM ERROR _ no registered SW");
         return;
       }
-      reg.pushManager?.getSubscription().then((sub) => {
-        if (sub && !(sub.expirationTime && Date.now() > sub.expirationTime - 5 * 60 * 1000)) {
-          setSubscription(sub);
-          setIsSubscribed(true);
-          console.log(sub);
-        }
-      });
+
       setRegistration(reg);
     },
   });
 
   const onRegister = async () => {
-    const subsription = await registration?.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(import.meta.env.VITE_VAPID_PUBLIC),
-    });
-    const res = await ServerService.register({ password, username, subsription });
+    const res = await ServerService.register({ password, username });
     console.log(res?.data);
 
     if (res?.data.user) {
       setUser(res.data.user);
+      sendDataToSw(res.data.user._id);
+    }
+  };
+  const sendDataToSw = (userId: string | null) => {
+    if (registration) {
+      registration.active?.postMessage({ action: "setUserId", userId: userId });
     }
   };
 

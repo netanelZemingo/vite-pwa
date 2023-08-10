@@ -28,6 +28,7 @@ export const Input = styled.input`
   outline: none;
   border-radius: 10px;
   padding: 0.5rem;
+  max-width: 100%;
   &:focus {
     border: 2px solid lightblue;
   }
@@ -39,15 +40,17 @@ export const Input = styled.input`
 export const Hint = styled.p`
   color: gray;
   font-weight: bold;
+  text-align: center;
 `;
 
 export const Button = styled.button`
   border-radius: 10px;
   border: none;
   background: #4caf50;
+  box-shadow: 10px 6px 4px -1px rgba(0, 0, 0, 0.25);
 
   color: white;
-  padding: 1rem;
+  padding: 0.5rem;
   font-size: large;
   font-weight: bolder;
   cursor: pointer;

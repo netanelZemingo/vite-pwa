@@ -40,23 +40,25 @@ export default defineConfig({
             // chaching all the ok 0,200 http codes from all urls
             handler: "StaleWhileRevalidate",
             urlPattern: ({ url }) => url.href === "https://jsonplaceholder.typicode.com/todos/3",
-            // options: { cacheableResponse: { statuses: [0, 200] } },
+            options: { cacheableResponse: { statuses: [0, 200] } },
           },
           {
             handler: "StaleWhileRevalidate",
             method: "GET",
             urlPattern: ({ url }) => {
-              console.log(url.pathname);
-
-              return url.pathname === "/chat";
+              return url.pathname.includes("/chat/get-chat");
             },
+            options: { cacheableResponse: { statuses: [0, 200] } },
           },
           {
             handler: "CacheFirst",
             method: "GET",
             urlPattern: ({ url }) => {
-              return url.href.includes("https://robohash.org/");
+              const isRobohash = url.href.includes("https://robohash.org/");
+              const isSvg = url.href.includes("svg");
+              return isRobohash || isSvg;
             },
+            options: { cacheableResponse: { statuses: [0, 200] } },
           },
         ],
       },

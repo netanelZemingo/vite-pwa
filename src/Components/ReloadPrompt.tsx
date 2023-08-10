@@ -1,3 +1,4 @@
+import { Button } from "../pages/Styles";
 import "./ReloadPrompt.css";
 import { useRegisterSW } from "virtual:pwa-register/react";
 
@@ -35,13 +36,13 @@ function ReloadPrompt() {
             )}
           </div>
           {needRefresh && (
-            <button className="ReloadPrompt-toast-button" onClick={() => updateServiceWorker(true)}>
+            <Button className="ReloadPrompt-toast-button" onClick={() => updateServiceWorker(true)}>
               Reload
-            </button>
+            </Button>
           )}
-          <button className="ReloadPrompt-toast-button" onClick={() => close()}>
+          <Button className="ReloadPrompt-toast-button" onClick={() => close()}>
             Close
-          </button>
+          </Button>
         </div>
       )}
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "../types/DataSets";
+import { User, UserDto } from "../types/DataSets";
 import { styled } from "styled-components";
 
 const Username = styled.span`
@@ -19,7 +19,7 @@ const _UserDetails = styled.div`
 `;
 
 interface UserDetailsProps {
-  user: User;
+  user: UserDto;
   isMyMsg: boolean;
 }
 export const UserDetails = ({ user, isMyMsg }: UserDetailsProps) => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { BeforeInstallPromptEvent } from "../types/BeforeInstallPromptEvent";
+import { Button } from "../pages/Styles";
 
 const InstallPwaBtn = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
@@ -29,7 +30,7 @@ const InstallPwaBtn = () => {
     };
   }, []);
 
-  return <> {deferredPrompt ? <button onClick={onInstall}>install app</button> : null}</>;
+  return <> {deferredPrompt ? <Button onClick={onInstall}>install app</Button> : null}</>;
 };
 
 export default InstallPwaBtn;
