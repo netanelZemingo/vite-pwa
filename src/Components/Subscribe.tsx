@@ -3,7 +3,7 @@ import { useRegisterSW } from "virtual:pwa-register/react";
 import { useGlobalContext } from "../context/UserContext";
 import { Button } from "../pages/Styles";
 import { ServerService } from "../services/Server";
-import { isInPwa, isIos } from "../utils/isIos";
+import { isOutsideBrowser, isIos } from "../utils/isIos";
 import { urlBase64ToUint8Array } from "../utils/urlBase64ToUint8Array";
 
 export const Subscribe = () => {
@@ -39,8 +39,8 @@ export const Subscribe = () => {
   };
   const toShowSubsribeButton: () => boolean = useCallback(() => {
     if (!user) return false;
-    if (!!registration && isIos() && isInPwa()) return true;
-    if (isIos() && !isInPwa()) return false;
+    if (!!registration && isIos() && isOutsideBrowser()) return true;
+    if (isIos() && !isOutsideBrowser()) return false;
     return true;
   }, [user, isSubscribed]);
 

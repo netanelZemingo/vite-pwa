@@ -16,14 +16,15 @@ const App = () => {
     const userStringify = localStorage.getItem("user");
     if (userStringify) {
       const user = JSON.parse(userStringify);
-      const res = await ServerService.validateUser(user);
-      console.log(res);
-      if (res.data.isUser) {
-        ServerService.user = user;
-        return user;
-      }
-      localStorage.removeItem("user");
-      return null;
+      // const res = await ServerService.validateUser(user);
+      // console.log(res);
+      // if (res.data.isUser) {
+      //   return user;
+      // }
+      if (!user) return null;
+      ServerService.user = user;
+      // localStorage.removeItem("user");
+      return user;
     }
     return null;
   };
