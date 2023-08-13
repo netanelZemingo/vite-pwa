@@ -30,6 +30,7 @@ export enum MyRoutes {
   staleWhileRevalidate = "staleWhileRevalidate",
   chat = "chat",
   cachedAssets = "cachedAssets",
+  home = "",
 }
 
 export default function MyRouter() {

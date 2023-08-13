@@ -69,6 +69,9 @@ const NavBar = () => {
           {!!navigator.share && <Share />}
           {/* </Row> */}
           {/* <Row> */}
+          <StyledLink onClick={() => setShowMenu(false)} to={MyRoutes.home}>
+            Home
+          </StyledLink>
           <StyledLink onClick={() => setShowMenu(false)} to={MyRoutes.chat}>
             Chat
           </StyledLink>
