@@ -46,15 +46,17 @@ export const Chat = () => {
     (async () => {
       if (!user) return;
       await getAllMessageRecursive();
-      if (messageContainer.current) {
-        messageContainer.current.scrollTop = messageContainer.current.scrollHeight;
-      }
+      setTimeout(() => {
+        if (messageContainer.current) {
+          messageContainer.current.scrollTop = messageContainer.current.scrollHeight;
+        }
+      });
     })();
     return () => {
       clearTimeout(recursiveTimeout);
       isAlive = false;
     };
-  }, [messageContainer.current, user]);
+  }, [messageContainer.current, JSON.stringify(user)]);
 
   const getAllMessageRecursive = async () => {
     if (!isAlive) return;

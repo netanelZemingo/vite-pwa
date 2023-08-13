@@ -38,9 +38,7 @@ export const Subscribe = () => {
     await ServerService.subscribeUser({ _id: user._id, user: { subsription } });
   };
   const toShowSubsribeButton: () => boolean = useCallback(() => {
-    // console.log({ user, isSubscribed, registration, isIos: isIos(), isInPwa: isInPwa() });
     if (!user) return false;
-    // if (isSubscribed) return false;
     if (!!registration && isIos() && isInPwa()) return true;
     if (isIos() && !isInPwa()) return false;
     return true;
