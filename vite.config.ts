@@ -2,15 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
-// https://vitejs.dev/config/
-
 export default defineConfig({
   plugins: [
     react(),
     VitePWA({
       registerType: "prompt",
 
-      // injectManifest: { swSrc: "./public/custom-service-worker.ts" },
       devOptions: {
         enabled: true,
       },
@@ -18,13 +15,6 @@ export default defineConfig({
       workbox: {
         importScripts: ["./custom-service-worker.js"],
         runtimeCaching: [
-          // {
-          //   handler: "CacheFirst",
-          //   urlPattern: ({ url }) => {
-          //     return url.origin.includes("http://localhost:5173");
-          //   },
-          //   // options: { cacheableResponse: { statuses: [0, 200] } },
-          // },
           {
             // chaching all the ok 0,200 http codes from all urls
             handler: "NetworkOnly",
@@ -111,5 +101,4 @@ export default defineConfig({
       },
     }),
   ],
-  // server: { fs: { allow: ["/"] } },
 });
